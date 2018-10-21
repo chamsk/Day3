@@ -1,0 +1,23 @@
+public class Main {
+    public static void main(String[] args) {
+        simplifyPath("/a/b/c/../d"); // → "/a/b/d"
+        simplifyPath("/a/"); // → "/a"
+    }
+
+    private static void simplifyPath(String s) {
+        String[] tmp = s.split("/");
+        LinkedList<String> link = new LinkedList<>();
+        for(String w : tmp){
+            if(w.equals("..")){
+                link.removeLast();
+            }
+            else link.add(w);
+        }
+        StringJoiner str = new StringJoiner("/","","");
+        for(String w : link){
+            str.add(w);
+        }
+        System.out.println(str);
+    }
+
+}
