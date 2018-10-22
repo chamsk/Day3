@@ -1,0 +1,20 @@
+public class Main {
+    public static void main(String[] args) {
+        integrate(x -> 2, 1, 10);
+    }
+
+    private static void integrate(DoubleUnaryOperator o, int a, int b) {
+        Double x1 = Double.valueOf(a);
+        Double x2 = Double.valueOf(b);
+        Double step = 0.1;
+        int n = (int) ((x2-x1)/step);//кол-во прямоугольников
+        Double res = 0.0;
+        for(int j=0;j<n;j++){
+            res += o.applyAsDouble(x1 + step * (j + 0.5));
+        }
+
+        System.out.println(res*step);
+
+    }
+
+}
